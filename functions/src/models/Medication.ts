@@ -9,14 +9,21 @@ export interface Medication {
     name: string;
     dosage: number;
     frequency: string;
-    refillDate: string;
-    instructions: string;
-    sideEffects: string;
+    refillDate: Date;
+    instructions?: string;
+    sideEffects?: string[];
 }
 
 export interface DosageLog {
-    id?: string;
+    id?: ObjectId;
     medicationId: string;
-    date: string;
+    date: Date;
     time: string;
+}
+
+export interface User {
+    id?: ObjectId;
+    name: string;
+    email: string;
+    password: string;
 }

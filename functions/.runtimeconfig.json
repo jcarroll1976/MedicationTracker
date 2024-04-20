@@ -1,0 +1,8 @@
+
+{
+    "mongodb": {
+      "uri": "mongodb+srv://zettafan40:GHz7UZL9nC8G7oqj@cluster0.wcpqzzb.mongodb.net/Medication_Tracker?retryWrites=true&w=majority"
+    }
+   }
+   
+   
