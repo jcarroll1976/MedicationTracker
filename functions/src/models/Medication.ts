@@ -5,25 +5,27 @@ export interface MedicationList {
 }
 
 export interface Medication {
-    id?: ObjectId;
+    id: ObjectId;
     name: string;
     dosage: number;
     frequency: string;
     refillDate: Date;
     instructions?: string;
     sideEffects?: string[];
+    userId: string;
 }
 
 export interface DosageLog {
     id?: ObjectId;
     medicationId: string;
+    dosage: number
     date: Date;
     time: string;
 }
 
 export interface User {
-    id?: ObjectId;
+    userId?: ObjectId;
     name: string;
     email: string;
-    password: string;
+    
 }
