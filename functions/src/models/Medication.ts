@@ -24,7 +24,7 @@ export interface DosageLog {
 }
 
 export interface User {
-    userId?: ObjectId;
+    userId: ObjectId;
     name: string;
     email: string;
     

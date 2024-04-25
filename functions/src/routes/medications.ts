@@ -12,7 +12,7 @@ const errorResponse = (error: any, res: any) => {
 };
 
 // get all Medications for a user
-medicationRouter.get("/users/:user_id/medications", async (req, res) => {
+medicationRouter.get("/:user_id/medications", async (req, res) => {
   try {
     const userId = req.params.user_id;
     const client = await getClient();
@@ -43,8 +43,8 @@ medicationRouter.get("/users/:user_id/medications/:id", async (req, res) => {
   }
 });
 
-// create a new Medication for a user
-medicationRouter.post("/users/:user_id/medications", async (req, res) => {
+// add a new Medication for a user
+medicationRouter.post("/:user_id/medications", async (req, res) => {
   try {
     const userId = req.params.user_id;
     const medication: Medication = req.body; // Replace with your model type
@@ -62,6 +62,30 @@ medicationRouter.post("/users/:user_id/medications", async (req, res) => {
     errorResponse(err, res);
   }
 });
+
+
+
+// Assuming you have a medication router
+medicationRouter.delete("/:user_id/medications/:medication_id", async (req, res) => {
+  try {
+    const userId = req.params.user_id;
+    const medicationId: ObjectId = new ObjectId(req.params.medication_id); // Assuming ID is a MongoDB ObjectID
+
+    const client = await getClient();
+    const result = await client.db().collection<Medication>('medications')
+      .deleteOne({ _id: medicationId, userId }); // Filter by medication and user ID
+
+    if (result.deletedCount === 1) {
+      res.status(200).json({ message: 'Medication deleted successfully' });
+    } else {
+      res.status(404).json({ message: 'Medication not found' });
+    }
+  } catch (err) {
+    // Handle specific medication creation errors (e.g., validation)
+    errorResponse(err, res);
+  }
+});
+
 
 // update a Medication by ID for a user (optional authorization)
 medicationRouter.put("/users/:user_id/medications/:id", async (req, res) => {
