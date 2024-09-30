@@ -6,7 +6,7 @@ git clone https://github.com/jcarroll1976/MedicationTrackerBackend
 
 Install dependencies:
 
-Bash: cd cd medication-tracker-backend npm install
+Bash: cd medication-tracker-backend npm install
 
 Running the developer server:
 
